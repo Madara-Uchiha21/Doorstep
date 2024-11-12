@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
+import { loginUser } from '../../services/authService';
 
 const LoginPopup = ({setShowLogin}) => {
 
@@ -12,28 +13,30 @@ const LoginPopup = ({setShowLogin}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post('https://your-api-url.com/login', {
-        email: email,
-        password: password
-      });
-
-      console.log('Login successful!', response.data);
- 
-      const token = response.data.token;
-      localStorage.setItem('authToken', token);
-
+      const data = await loginUser(email, password); // Call the service function
+      console.log('Login successful!', data);
+      
+      // Store token in local storage
+      localStorage.setItem('authToken', data.token);
+      
+      setShowLogin(false); // Close the popup on successful login
     } catch (error) {
-
       setError('Login failed. Please check your credentials.');
       console.error('Login error:', error);
     }
   };
+  
   const handleClick = () => {
-    alert('Button clicked ${email}!' );
-    console.log(email,password);
+    if (currState === "Login") {
+      handleSubmit(); // Trigger login on click if in "Login" state
+    } else {
+      console.log('Sign Up functionality here');
+      // Add signup logic if needed
+    }
   };
+  
   return (
     <div className='login-popup'>
       <form className="login-popup-container">

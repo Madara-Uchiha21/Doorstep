@@ -1,0 +1,86 @@
+You said:
+what are the possible api endpoints for food delivery website.
+ChatGPT said:
+ChatGPT
+
+For a food delivery website like yours, here’s a set of potential API endpoints categorized by function. These cover essential features for customer orders, delivery person services, and admin controls.
+1. Customer Endpoints
+
+    User Authentication & Profile:
+        POST /api/auth/signup - Register a new customer account.
+        POST /api/auth/login - Log in a customer.
+        GET /api/users/profile - Get profile information of a customer.
+        PUT /api/users/profile - Update customer profile information.
+        GET /api/users/orders - Get the list of customer’s past and current orders.
+
+    Ordering & Product Catalog:
+        GET /api/shops - List all available shops.
+        GET /api/shops/:shopId/products - List products for a specific shop.
+        POST /api/orders - Place a new order.
+        GET /api/orders/:orderId - Get details for a specific order.
+        PUT /api/orders/:orderId - Update an existing order (e.g., cancel or modify).
+        POST /api/orders/:orderId/payment - Handle payment for an order.
+
+    Order Tracking:
+        GET /api/orders/:orderId/tracking - Track the real-time location and status of an order.
+        GET /api/orders/:orderId/status - Get the current status (e.g., "preparing," "out for delivery," etc.).
+
+    Feedback & Rating:
+        POST /api/orders/:orderId/rate - Rate the order and delivery experience.
+        GET /api/feedbacks/:userId - Get feedback left by a specific customer.
+
+2. Delivery Person Endpoints
+
+    Delivery Person Authentication & Profile:
+        POST /api/auth/delivery-signup - Register a new delivery person.
+        POST /api/auth/delivery-login - Log in a delivery person.
+        GET /api/delivery/profile - Get profile info for a delivery person.
+        PUT /api/delivery/profile - Update delivery person profile info (availability, profile photo, etc.).
+
+    Order Management:
+        GET /api/delivery/orders - List available delivery requests.
+        POST /api/delivery/orders/:orderId/accept - Accept a delivery request.
+        POST /api/delivery/orders/:orderId/complete - Mark an order as delivered.
+        PUT /api/delivery/orders/:orderId/status - Update status (e.g., “Picked up,” “In transit”).
+
+    Earnings & History:
+        GET /api/delivery/earnings - View earnings history.
+        GET /api/delivery/orders/completed - View completed deliveries.
+
+3. Admin Endpoints
+
+    User & Delivery Person Management:
+        GET /api/admin/users - List all customers.
+        GET /api/admin/delivery-persons - List all delivery persons.
+        PUT /api/admin/users/:userId - Update a customer’s details (e.g., ban, edit info).
+        PUT /api/admin/delivery-persons/:personId - Update delivery person details (e.g., set availability, ban).
+
+    Order Management:
+        GET /api/admin/orders - View all orders with details.
+        PUT /api/admin/orders/:orderId - Update order details/status.
+
+    Financial & Revenue Monitoring:
+        GET /api/admin/revenue - Get platform-wide revenue data.
+        GET /api/admin/delivery-fees - View or modify the per-delivery charge.
+
+    Platform Content:
+        GET /api/admin/feedbacks - View feedback from customers.
+        POST /api/admin/notifications - Send announcements or alerts to users and delivery persons.
+
+4. General Utility Endpoints
+
+    Support & Communication:
+        POST /api/support/contact - Submit a support ticket or contact message.
+        GET /api/support/faqs - Retrieve FAQ content.
+
+    Static Pages:
+        GET /api/pages/terms - Retrieve Terms and Conditions content.
+        GET /api/pages/privacy - Retrieve Privacy Policy content.
+
+5. Location and Real-Time Services
+
+    Maps & Real-Time Tracking:
+        GET /api/location/nearby-delivery-persons - Get a list of nearby delivery persons for a customer’s location.
+        POST /api/location/update - Update the real-time location of a delivery person for tracking purposes.
+
+These endpoints cover a comprehensive set of functionalities required for a food delivery website, allowing seamless interaction for customers, delivery persons, and admins
